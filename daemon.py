@@ -47,9 +47,17 @@ if __name__ == '__main__':
             weather = data.pop('weather')
             data['description'] = weather['description']
 
+            # Ensure floats
+            for fl in ['rh', 'lon', 'pres', 'clouds', 'solar_rad',
+                       'wind_spd', 'slp', 'vis', 'h_angle', 'dni',
+                       'dewpt', 'snow', 'uv', 'precip', 'wind_dir',
+                       'ghi', 'dhi', 'aqi', 'lat', 'temp',
+                       'elev_angle', 'app_temp']:
+                data[fl] = float(data[fl])
+
             json_body = [
                 {
-                    "measurement": "weatherbit",
+                    "measurement": "weather",
                     "tags": tags,
                     "time": now.strftime('%Y-%m-%dT%H:%M:%SZ'),
                     "fields": data,
