@@ -41,7 +41,8 @@ if __name__ == '__main__':
 
             for ignore in ['last_ob_time', 'ob_time', 'timezone', 
                            'datetime', 'pod']:
-                data.pop(ignore)
+                if ignore in data:
+                    data.pop(ignore)
 
             # Rewrite description
             weather = data.pop('weather')
